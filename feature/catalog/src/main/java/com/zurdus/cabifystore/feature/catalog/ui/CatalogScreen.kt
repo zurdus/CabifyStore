@@ -56,8 +56,11 @@ import coil.request.ImageRequest
 import com.zurdus.base.ui.theme.CabifyTheme
 import com.zurdus.cabifystore.base.response.ResponseError
 import com.zurdus.cabifystore.feature.catalog.R
+import com.zurdus.cabifystore.feature.catalog.navigation.ParcelableProduct
 import com.zurdus.cabifystore.util.formatToEuros
 import com.zurdus.data.product.api.model.Product
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.koin.androidx.compose.getViewModel
 import java.math.BigDecimal
 
@@ -82,9 +85,17 @@ fun CatalogScreen(
         refreshing = refreshing,
         error = error,
         onRefresh = viewModel::onCatalogRefresh,
-        onProductClick = viewModel::onProductItemClick,
+        onProductClick = { product -> navigateToItemDetail(product, navController) },
         onCartButtonClick = { navController.navigate("cart") }
     )
+}
+
+private fun navigateToItemDetail(
+    product: Product,
+    navController: NavController
+) {
+    val parcelableProduct = ParcelableProduct.fromProduct(product)
+    navController.navigate("catalog/$parcelableProduct")
 }
 
 @OptIn(ExperimentalMaterialApi::class)

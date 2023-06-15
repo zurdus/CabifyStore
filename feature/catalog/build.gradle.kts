@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
+    kotlin("plugin.serialization") version "1.8.22"
 }
 
 android {
@@ -62,6 +64,7 @@ dependencies {
     androidTestImplementation(composeBom)
 
     implementation("androidx.compose.material:material:1.5.0-beta02")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
     // Android Studio Preview support
     implementation("androidx.compose.ui:ui-tooling-preview")
