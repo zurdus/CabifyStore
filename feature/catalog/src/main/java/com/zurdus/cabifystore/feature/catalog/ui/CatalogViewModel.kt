@@ -1,22 +1,29 @@
 package com.zurdus.cabifystore.feature.catalog.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zurdus.cabifystore.base.response.ResponseError
 import com.zurdus.cabifystore.base.response.doOnFailure
 import com.zurdus.cabifystore.base.response.doOnSuccess
+import com.zurdus.cabifystore.domain.cart.AddProductToCart
+import com.zurdus.cabifystore.domain.cart.LoadCart
+import com.zurdus.cabifystore.domain.cart.RemoveProductFromCart
 import com.zurdus.cabifystore.domain.product.LoadProducts
 import com.zurdus.data.product.api.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 class CatalogViewModel(
+    loadCart: LoadCart,
     private val loadProducts: LoadProducts,
-//    private val getCartCount: GetCartCount,
-//    private val addProductToCart: AddProductToCart,
-//    private val removeProductFromCart: RemoveProductFromCart,
+    private val addProductToCart: AddProductToCart,
+    private val removeProductFromCart: RemoveProductFromCart,
 ) : ViewModel() {
 
     private val _products: MutableStateFlow<List<Product>> = MutableStateFlow(emptyList())
@@ -31,6 +38,26 @@ class CatalogViewModel(
     private val _error: MutableStateFlow<ResponseError?> = MutableStateFlow(null)
     val error = _error.asStateFlow()
 
+    val cartCount: StateFlow<Int> = loadCart()
+        .map { products ->
+            products.count()
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000L),
+            initialValue = 0
+        )
+
+    val totalPrice: StateFlow<BigDecimal> = loadCart()
+        .map { products ->
+            products.sumOf { it.price }
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000L),
+            initialValue = BigDecimal("0")
+        )
+
     init {
         loadCatalog(refreshing = false)
     }
@@ -40,7 +67,15 @@ class CatalogViewModel(
     }
 
     fun onProductItemClick(product: Product) {
-        Log.e("***********", "Clicked on ${product.name}")
+        viewModelScope.launch {
+            addProductToCart(product)
+        }
+    }
+
+    fun onProductLongClick(product: Product) {
+        viewModelScope.launch {
+            removeProductFromCart(product)
+        }
     }
 
     private fun loadCatalog(refreshing: Boolean) {

@@ -1,7 +1,10 @@
 package com.zurdus.cabifystore
 
 import android.app.Application
+import com.zurdus.cabifystore.data.cart.impl.di.dataCartModule
 import com.zurdus.cabifystore.di.appModule
+import com.zurdus.cabifystore.domain.cart.di.domainCartModule
+import com.zurdus.cabifystore.domain.product.di.domainProductModule
 import com.zurdus.cabifystore.feature.catalog.di.featureCatalogModule
 import com.zurdus.data.product.impl.di.dataProductModule
 import org.koin.android.ext.koin.androidContext
@@ -18,7 +21,17 @@ class MainApplication : Application() {
             // Reference Android context
             androidContext(this@MainApplication)
             // Load modules
-            modules(appModule, featureCatalogModule, dataProductModule)
+            modules(
+                appModule,
+
+                featureCatalogModule,
+
+                domainProductModule,
+                domainCartModule,
+
+                dataProductModule,
+                dataCartModule,
+            )
         }
 
     }

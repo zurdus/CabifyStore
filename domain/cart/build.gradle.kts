@@ -11,6 +11,16 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+dependencies {
+    api(project(":data:cart:api"))
+
+    implementation(project(":util"))
+    implementation(project(":base"))
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("io.insert-koin:koin-core:3.4.2")
+}
+
 tasks.withType<KotlinJvmCompile>().configureEach {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_1_8)

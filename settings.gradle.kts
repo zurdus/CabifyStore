@@ -25,6 +25,9 @@ include(":domain:cart")
 include(":data:product:api")
 include(":data:product:impl")
 
+include(":data:cart:api")
+include(":data:cart:impl")
+
 include(":util")
 include(":base")
 include(":base-ui")
