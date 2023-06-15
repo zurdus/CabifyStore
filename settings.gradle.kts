@@ -1,0 +1,29 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "Cabify Store"
+include(":app")
+
+include(":feature:catalog")
+include(":feature:cart")
+
+include(":domain:product")
+include(":domain:cart")
+
+include(":data:product")
+
+include(":util")
+include(":base")
+include(":base-ui")
