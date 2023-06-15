@@ -47,8 +47,8 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.zurdus.base.ui.theme.CabifyTheme
 import com.zurdus.cabifystore.base.response.ResponseError
-import com.zurdus.cabifystore.data.product.model.Product
 import com.zurdus.cabifystore.feature.catalog.R
+import com.zurdus.data.product.api.model.Product
 import org.koin.androidx.compose.getViewModel
 import java.math.BigDecimal
 
@@ -98,7 +98,8 @@ private fun CatalogScreen(
                 },
                 backgroundColor = CabifyTheme.color.neutral.background,
                 contentColor = CabifyTheme.color.neutral.content,
-                elevation = 0.dp
+                elevation = 0.dp,
+                navigationIcon = {}
             )
         }
     ) { contentPaddings ->
@@ -110,6 +111,15 @@ private fun CatalogScreen(
                     refreshing = refreshing
                 ) {
                     ErrorScreen()
+                }
+            }
+
+            products.isEmpty() -> {
+                RefreshableContent(
+                    pullRefreshState = pullRefreshState,
+                    refreshing = refreshing
+                ) {
+                    EmptyScreen()
                 }
             }
 
@@ -246,6 +256,29 @@ private fun ErrorScreen() {
         Text("There was an error", style = MaterialTheme.typography.body1)
 
         Text("Please try again")
+    }
+}
+
+@Composable
+private fun EmptyScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = "Uh oh!",
+            style = CabifyTheme.typography.h6
+        )
+
+        Text(
+            text = "Something went wrong. Please check your Internet connection and try again.",
+            style = CabifyTheme.typography.body1,
+            textAlign = TextAlign.Center
+        )
     }
 }
 

@@ -6,15 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.zurdus.cabifystore.base.response.ResponseError
 import com.zurdus.cabifystore.base.response.doOnFailure
 import com.zurdus.cabifystore.base.response.doOnSuccess
-import com.zurdus.cabifystore.data.product.model.Product
-import com.zurdus.cabifystore.domain.cart.AddProductToCart
-import com.zurdus.cabifystore.domain.cart.GetCartCount
-import com.zurdus.cabifystore.domain.cart.RemoveProductFromCart
 import com.zurdus.cabifystore.domain.product.LoadProducts
+import com.zurdus.data.product.api.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.util.logging.Logger
 
 class CatalogViewModel(
     private val loadProducts: LoadProducts,

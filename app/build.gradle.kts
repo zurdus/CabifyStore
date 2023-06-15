@@ -52,6 +52,8 @@ android {
 dependencies {
     implementation(project(":feature:catalog"))
 
+    implementation(project(":data:product:impl"))
+
     implementation(project(":base"))
     implementation(project(":base-ui"))
     implementation(project(":util"))

@@ -22,7 +22,8 @@ include(":feature:cart")
 include(":domain:product")
 include(":domain:cart")
 
-include(":data:product")
+include(":data:product:api")
+include(":data:product:impl")
 
 include(":util")
 include(":base")
