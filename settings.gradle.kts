@@ -28,7 +28,8 @@ include(":data:product:impl")
 include(":data:cart:api")
 include(":data:cart:impl")
 
-include(":util")
-include(":base")
-include(":base-ui")
-include(":model")
+include(":base:common")
+include(":base:model")
+include(":base:util")
+include(":base:ui")
+

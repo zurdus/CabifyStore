@@ -14,8 +14,7 @@ java {
 dependencies {
     api(project(":data:cart:api"))
 
-    implementation(project(":util"))
-    implementation(project(":base"))
+    implementation(project(":base:util"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     implementation("io.insert-koin:koin-core:3.4.2")

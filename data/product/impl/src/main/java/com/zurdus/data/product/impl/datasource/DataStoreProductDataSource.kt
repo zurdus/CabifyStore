@@ -6,8 +6,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.zurdus.cabifystore.base.response.Response
-import com.zurdus.cabifystore.base.response.ResponseError
+import com.zurdus.cabifystore.common.response.Response
+import com.zurdus.cabifystore.common.response.ResponseError
 import com.zurdus.cabifystore.model.Product
 import com.zurdus.data.product.api.datasource.LocalProductDataSource
 import kotlinx.coroutines.flow.Flow

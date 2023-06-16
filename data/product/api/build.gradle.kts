@@ -9,8 +9,8 @@ java {
 }
 
 dependencies {
-    api(project(":model"))
-    api(project(":base"))
+    api(project(":base:model"))
+    api(project(":base:common"))
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {

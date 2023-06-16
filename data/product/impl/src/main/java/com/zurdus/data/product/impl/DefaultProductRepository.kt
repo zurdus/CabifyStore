@@ -1,6 +1,6 @@
 package com.zurdus.data.product.impl
 
-import com.zurdus.cabifystore.base.response.Response
+import com.zurdus.cabifystore.common.response.Response
 import com.zurdus.cabifystore.model.Product
 import com.zurdus.data.product.api.ProductRepository
 import com.zurdus.data.product.api.datasource.ProductDataSource

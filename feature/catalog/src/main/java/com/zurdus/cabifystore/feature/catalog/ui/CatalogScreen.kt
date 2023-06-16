@@ -54,13 +54,11 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.zurdus.base.ui.theme.CabifyTheme
-import com.zurdus.cabifystore.base.response.ResponseError
+import com.zurdus.cabifystore.common.response.ResponseError
 import com.zurdus.cabifystore.feature.catalog.R
 import com.zurdus.cabifystore.feature.catalog.navigation.ParcelableProduct
 import com.zurdus.cabifystore.util.formatToEuros
 import com.zurdus.cabifystore.model.Product
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import org.koin.androidx.compose.getViewModel
 import java.math.BigDecimal
 

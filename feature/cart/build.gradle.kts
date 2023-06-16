@@ -43,15 +43,14 @@ android {
 dependencies {
     implementation(project(":domain:cart"))
 
-    implementation(project(":base"))
-    implementation(project(":base-ui"))
+    implementation(project(":base:common"))
+    implementation(project(":base:ui"))
+    implementation(project(":base:util"))
 
-    implementation(project(":util"))
-
-    implementation("androidx.compose:compose-bom:2023.04.01")
+    implementation("androidx.compose:compose-bom:2023.06.00")
     implementation("androidx.compose.material:material:1.5.0-beta02")
     implementation("androidx.navigation:navigation-compose:2.6.0")
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     testImplementation("junit:junit:4.13.2")

@@ -59,9 +59,9 @@ dependencies {
     implementation(project(":data:product:impl"))
     implementation(project(":data:cart:impl"))
 
-    implementation(project(":base"))
-    implementation(project(":base-ui"))
-    implementation(project(":util"))
+    implementation(project(":base:common"))
+    implementation(project(":base:ui"))
+    implementation(project(":base:util"))
 
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")

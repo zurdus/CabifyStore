@@ -9,8 +9,8 @@ java {
 }
 
 dependencies {
-    api(project(":model"))
-    api(project(":base"))
+    api(project(":base:common"))
+    api(project(":base:model"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
 }

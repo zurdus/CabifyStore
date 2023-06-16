@@ -1,7 +1,7 @@
 package com.zurdus.data.product.impl.datasource
 
-import com.zurdus.cabifystore.base.response.Response
-import com.zurdus.cabifystore.base.response.ResponseError
+import com.zurdus.cabifystore.common.response.Response
+import com.zurdus.cabifystore.common.response.ResponseError
 import com.zurdus.data.product.api.datasource.ProductDataSource
 import com.zurdus.cabifystore.model.Product
 import com.zurdus.data.product.impl.datasource.framework.ProductApi

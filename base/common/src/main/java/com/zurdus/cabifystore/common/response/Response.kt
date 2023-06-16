@@ -1,4 +1,4 @@
-package com.zurdus.cabifystore.base.response
+package com.zurdus.cabifystore.common.response
 
 /**
  * The result of an operation. Can be a [Success], in which case it will return some data,
