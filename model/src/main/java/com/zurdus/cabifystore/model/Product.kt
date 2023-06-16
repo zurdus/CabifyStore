@@ -1,4 +1,4 @@
-package com.zurdus.data.product.api.model
+package com.zurdus.cabifystore.model
 
 import java.math.BigDecimal
 

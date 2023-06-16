@@ -6,11 +6,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 class LoadProducts(
-    private val dispatchers: Dispatchers,
     private val productRepository: ProductRepository,
+    private val dispatchers: Dispatchers,
 ) {
     suspend operator fun invoke() = withContext(dispatchers.IO) {
-        delay(3000)
         productRepository.getProducts()
     }
 }

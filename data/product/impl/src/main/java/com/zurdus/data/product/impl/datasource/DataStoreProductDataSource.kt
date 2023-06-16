@@ -8,8 +8,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.zurdus.cabifystore.base.response.Response
 import com.zurdus.cabifystore.base.response.ResponseError
+import com.zurdus.cabifystore.model.Product
 import com.zurdus.data.product.api.datasource.LocalProductDataSource
-import com.zurdus.data.product.api.model.Product
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map

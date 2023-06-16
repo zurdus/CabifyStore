@@ -9,7 +9,7 @@ import com.zurdus.cabifystore.domain.cart.AddProductToCart
 import com.zurdus.cabifystore.domain.cart.LoadCart
 import com.zurdus.cabifystore.domain.cart.RemoveProductFromCart
 import com.zurdus.cabifystore.domain.product.LoadProducts
-import com.zurdus.data.product.api.model.Product
+import com.zurdus.cabifystore.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

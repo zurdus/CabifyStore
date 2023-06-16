@@ -3,7 +3,7 @@ package com.zurdus.cabifystore.feature.catalog.navigation
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.navigation.NavType
-import com.zurdus.data.product.api.model.Product
+import com.zurdus.cabifystore.model.Product
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString

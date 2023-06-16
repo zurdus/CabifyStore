@@ -1,6 +1,6 @@
 package com.zurdus.cabifystore.data.cart.api
 
-import com.zurdus.data.product.api.model.Product
+import com.zurdus.cabifystore.model.Product
 import kotlinx.coroutines.flow.Flow
 
 interface CartSource {

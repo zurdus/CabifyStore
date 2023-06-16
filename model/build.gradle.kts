@@ -8,13 +8,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-dependencies {
-    api(project(":model"))
-    api(project(":base"))
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
-}
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)

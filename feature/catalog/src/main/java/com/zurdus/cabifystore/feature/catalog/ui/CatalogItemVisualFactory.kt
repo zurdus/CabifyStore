@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import com.zurdus.base.ui.theme.CabifyTheme
 import com.zurdus.base.ui.theme.ColorSystem
 import com.zurdus.cabifystore.util.formatToEuros
-import com.zurdus.data.product.api.model.Product
+import com.zurdus.cabifystore.model.Product
 
 internal data class CatalogItemVisual(
     val imageUrl: String,

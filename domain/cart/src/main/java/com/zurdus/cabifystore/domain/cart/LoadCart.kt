@@ -1,7 +1,7 @@
 package com.zurdus.cabifystore.domain.cart
 
 import com.zurdus.cabifystore.data.cart.api.CartSource
-import com.zurdus.data.product.api.model.Product
+import com.zurdus.cabifystore.model.Product
 import kotlinx.coroutines.flow.Flow
 
 class LoadCart(

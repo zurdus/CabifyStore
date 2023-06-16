@@ -9,6 +9,7 @@ java {
 }
 
 dependencies {
+    api(project(":model"))
     api(project(":base"))
 }
 
