@@ -33,3 +33,4 @@ include(":base:model")
 include(":base:util")
 include(":base:ui")
 
+include(":navigation")

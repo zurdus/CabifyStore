@@ -10,9 +10,10 @@ import androidx.navigation.navigation
 import com.zurdus.cabifystore.feature.catalog.ui.CatalogDetailScreen
 import com.zurdus.cabifystore.feature.catalog.ui.CatalogScreen
 import com.zurdus.cabifystore.model.Product
+import com.zurdus.cabifystore.navigation.NavGraphRoot
 
 fun NavGraphBuilder.catalogNavGraph(navController: NavController) {
-    navigation(startDestination = ROUTE_CATALOG, CATALOG_ROOT) {
+    navigation(startDestination = ROUTE_CATALOG, NavGraphRoot.CatalogGraph.name) {
         composable(ROUTE_CATALOG) { CatalogScreen(navController) }
 
         dialog(
@@ -41,13 +42,11 @@ fun NavGraphBuilder.catalogNavGraph(navController: NavController) {
 fun NavController.navigateToDetail(product: Product, index: Int) {
     val parcelableProduct = ParcelableProduct.fromProduct(product)
     val route = ROUTE_DETAIL
-        .replace(ARG_DETAIL_INDEX, index.toString())
-        .replace(ARG_DETAIL_PRODUCT, parcelableProduct.toString())
+        .replace("{$ARG_DETAIL_INDEX}", index.toString())
+        .replace("{$ARG_DETAIL_PRODUCT}", parcelableProduct.toString())
 
     navigate(route)
 }
-
-const val CATALOG_ROOT = "catalog_navgraph"
 
 private const val ARG_DETAIL_INDEX = "index"
 private const val ARG_DETAIL_PRODUCT = "product"

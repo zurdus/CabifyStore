@@ -61,6 +61,7 @@ import com.zurdus.cabifystore.feature.catalog.R
 import com.zurdus.cabifystore.feature.catalog.navigation.ParcelableProduct
 import com.zurdus.cabifystore.feature.catalog.navigation.navigateToDetail
 import com.zurdus.cabifystore.model.Product
+import com.zurdus.cabifystore.navigation.navigateToCart
 import com.zurdus.cabifystore.ui.composable.Preview
 import com.zurdus.cabifystore.util.formatToEuros
 import org.koin.androidx.compose.getViewModel
@@ -90,7 +91,7 @@ fun CatalogScreen(
         onProductClick = { index, product ->
             navController.navigateToDetail(product, index) },
         onCartButtonClick = {
-            navController.navigate("cart")
+            navController.navigateToCart()
         }
     )
 }
