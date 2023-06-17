@@ -5,9 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.zurdus.cabifystore.common.response.ResponseError
 import com.zurdus.cabifystore.common.response.doOnFailure
 import com.zurdus.cabifystore.common.response.doOnSuccess
-import com.zurdus.cabifystore.domain.cart.AddProductToCart
 import com.zurdus.cabifystore.domain.cart.LoadCart
-import com.zurdus.cabifystore.domain.cart.RemoveProductFromCart
 import com.zurdus.cabifystore.domain.product.LoadProducts
 import com.zurdus.cabifystore.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,8 +20,6 @@ import java.math.BigDecimal
 class CatalogViewModel(
     loadCart: LoadCart,
     private val loadProducts: LoadProducts,
-    private val addProductToCart: AddProductToCart,
-    private val removeProductFromCart: RemoveProductFromCart,
 ) : ViewModel() {
 
     private val _products: MutableStateFlow<List<Product>> = MutableStateFlow(emptyList())
@@ -64,18 +60,6 @@ class CatalogViewModel(
 
     fun onCatalogRefresh() {
         loadCatalog(refreshing = true)
-    }
-
-    fun onProductItemClick(product: Product) {
-        viewModelScope.launch {
-            addProductToCart(product)
-        }
-    }
-
-    fun onProductLongClick(product: Product) {
-        viewModelScope.launch {
-            removeProductFromCart(product)
-        }
     }
 
     private fun loadCatalog(refreshing: Boolean) {

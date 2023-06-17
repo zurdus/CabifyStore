@@ -24,6 +24,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
@@ -37,6 +38,7 @@ import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -57,14 +59,16 @@ import com.zurdus.base.ui.theme.CabifyTheme
 import com.zurdus.cabifystore.common.response.ResponseError
 import com.zurdus.cabifystore.feature.catalog.R
 import com.zurdus.cabifystore.feature.catalog.navigation.ParcelableProduct
-import com.zurdus.cabifystore.util.formatToEuros
+import com.zurdus.cabifystore.feature.catalog.navigation.navigateToDetail
 import com.zurdus.cabifystore.model.Product
+import com.zurdus.cabifystore.ui.composable.Preview
+import com.zurdus.cabifystore.util.formatToEuros
 import org.koin.androidx.compose.getViewModel
 import java.math.BigDecimal
 
 @Composable
 fun CatalogScreen(
-    navController: NavController
+    navController: NavController,
 ) {
     val viewModel = getViewModel<CatalogViewModel>()
 
@@ -83,17 +87,12 @@ fun CatalogScreen(
         refreshing = refreshing,
         error = error,
         onRefresh = viewModel::onCatalogRefresh,
-        onProductClick = { product -> navigateToItemDetail(product, navController) },
-        onCartButtonClick = { navController.navigate("cart") }
+        onProductClick = { index, product ->
+            navController.navigateToDetail(product, index) },
+        onCartButtonClick = {
+            navController.navigate("cart")
+        }
     )
-}
-
-private fun navigateToItemDetail(
-    product: Product,
-    navController: NavController
-) {
-    val parcelableProduct = ParcelableProduct.fromProduct(product)
-    navController.navigate("catalog/$parcelableProduct")
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -106,7 +105,7 @@ private fun CatalogScreen(
     refreshing: Boolean,
     error: ResponseError?,
     onRefresh: () -> Unit,
-    onProductClick: (Product) -> Unit,
+    onProductClick: (Int, Product) -> Unit,
     onCartButtonClick: () -> Unit,
 ) {
     val pullRefreshState = rememberPullRefreshState(
@@ -205,7 +204,7 @@ private fun ProductCatalog(
     contentPaddings: PaddingValues = PaddingValues(0.dp),
     products: List<Product>,
     totalPrice: BigDecimal,
-    onProductClick: (Product) -> Unit,
+    onProductClick: (Int, Product) -> Unit,
     onCartButtonClick: () -> Unit,
 ) {
     Column(
@@ -234,7 +233,7 @@ private fun ProductCatalog(
             }
 
             itemsIndexed(products) { index, product ->
-                ProductItem(
+                CatalogItem(
                     index = index,
                     product = product,
                     onClick = onProductClick
@@ -264,10 +263,10 @@ private fun ProductCatalog(
 }
 
 @Composable
-private fun ProductItem(
+private fun CatalogItem(
     index: Int,
     product: Product,
-    onClick: (Product) -> Unit,
+    onClick: (Int, Product) -> Unit,
 ) {
     val visual = product.getCatalogItemVisual(index = index)
     val colorSystem = visual.colorSystem
@@ -280,7 +279,7 @@ private fun ProductItem(
             .clickable(
                 interactionSource = interactionSource,
                 indication = rememberRipple(),
-                onClick = { onClick(product) },
+                onClick = { onClick(index, product) },
             ),
         color = colorSystem.background,
     ) {
@@ -292,6 +291,7 @@ private fun ProductItem(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(visual.imageUrl)
                     .decoderFactory(SvgDecoder.Factory())
+                    .placeholder(R.drawable.placeholder)
                     .crossfade(true)
                     .build(),
                 colorFilter = ColorFilter.tint(colorSystem.accent),
@@ -303,23 +303,23 @@ private fun ProductItem(
 
             Spacer(Modifier.height(16.dp))
 
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = visual.name,
-                style = CabifyTheme.typography.subtitle1,
-                textAlign = TextAlign.Center,
-                color = colorSystem.content,
-            )
+            CompositionLocalProvider(LocalContentColor provides colorSystem.content) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = visual.name,
+                    style = CabifyTheme.typography.subtitle1,
+                    textAlign = TextAlign.Center,
+                )
 
-            Spacer(Modifier.height(8.dp))
+                Spacer(Modifier.height(8.dp))
 
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = visual.price,
-                style = CabifyTheme.typography.h2,
-                textAlign = TextAlign.Center,
-                color = colorSystem.content,
-            )
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = visual.price,
+                    style = CabifyTheme.typography.h2,
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
     }
 }
@@ -393,14 +393,16 @@ private fun RefreshableContent(
 @Preview
 @Composable
 fun CatalogItemPreview() {
-    ProductItem(
-        index = 1,
-        product = Product(
-            code = "test",
-            imageUrl = "https://i.imgur.com/2cYRww5.png",
-            name = "Test item",
-            price = BigDecimal("100"),
-        ),
-        onClick = {},
-    )
+    Preview {
+        CatalogItem(
+            index = 1,
+            product = Product(
+                code = "test",
+                imageUrl = "https://i.imgur.com/2cYRww5.png",
+                name = "Test item",
+                price = BigDecimal("100"),
+            ),
+            onClick = { _, _ -> },
+        )
+    }
 }

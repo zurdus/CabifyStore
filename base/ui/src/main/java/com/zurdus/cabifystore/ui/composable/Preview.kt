@@ -1,4 +1,4 @@
-package com.zurdus.base.ui.util
+package com.zurdus.cabifystore.ui.composable
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
