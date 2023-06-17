@@ -35,8 +35,8 @@ class CatalogViewModel(
     val error = _error.asStateFlow()
 
     val cartCount: StateFlow<Int> = loadCart()
-        .map { products ->
-            products.count()
+        .map { cart ->
+            cart.itemCount
         }
         .stateIn(
             scope = viewModelScope,
@@ -45,8 +45,8 @@ class CatalogViewModel(
         )
 
     val totalPrice: StateFlow<BigDecimal> = loadCart()
-        .map { products ->
-            products.sumOf { it.price }
+        .map { cart ->
+            cart.total
         }
         .stateIn(
             scope = viewModelScope,

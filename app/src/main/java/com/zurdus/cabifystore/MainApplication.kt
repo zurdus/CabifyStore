@@ -7,6 +7,7 @@ import com.zurdus.cabifystore.di.appModule
 import com.zurdus.cabifystore.domain.checkout.cart.di.domainCheckoutModule
 import com.zurdus.cabifystore.domain.product.di.domainProductModule
 import com.zurdus.cabifystore.feature.catalog.di.featureCatalogModule
+import com.zurdus.cabifystore.feature.checkout.di.featureCheckoutModule
 import com.zurdus.data.product.impl.di.dataProductModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -26,6 +27,7 @@ class MainApplication : Application() {
                 appModule,
 
                 featureCatalogModule,
+                featureCheckoutModule,
 
                 domainProductModule,
                 domainCheckoutModule,

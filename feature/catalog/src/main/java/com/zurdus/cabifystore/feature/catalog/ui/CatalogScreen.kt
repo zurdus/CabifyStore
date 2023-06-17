@@ -58,7 +58,6 @@ import coil.request.ImageRequest
 import com.zurdus.base.ui.theme.CabifyTheme
 import com.zurdus.cabifystore.common.response.ResponseError
 import com.zurdus.cabifystore.feature.catalog.R
-import com.zurdus.cabifystore.feature.catalog.navigation.ParcelableProduct
 import com.zurdus.cabifystore.feature.catalog.navigation.navigateToDetail
 import com.zurdus.cabifystore.model.Product
 import com.zurdus.cabifystore.navigation.navigateToCart
