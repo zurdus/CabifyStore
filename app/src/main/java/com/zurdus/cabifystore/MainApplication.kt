@@ -2,8 +2,9 @@ package com.zurdus.cabifystore
 
 import android.app.Application
 import com.zurdus.cabifystore.data.cart.impl.di.dataCartModule
+import com.zurdus.cabifystore.data.discount.impl.di.dataDiscountModule
 import com.zurdus.cabifystore.di.appModule
-import com.zurdus.cabifystore.domain.cart.di.domainCartModule
+import com.zurdus.cabifystore.domain.checkout.cart.di.domainCheckoutModule
 import com.zurdus.cabifystore.domain.product.di.domainProductModule
 import com.zurdus.cabifystore.feature.catalog.di.featureCatalogModule
 import com.zurdus.data.product.impl.di.dataProductModule
@@ -27,10 +28,11 @@ class MainApplication : Application() {
                 featureCatalogModule,
 
                 domainProductModule,
-                domainCartModule,
+                domainCheckoutModule,
 
                 dataProductModule,
                 dataCartModule,
+                dataDiscountModule,
             )
         }
 

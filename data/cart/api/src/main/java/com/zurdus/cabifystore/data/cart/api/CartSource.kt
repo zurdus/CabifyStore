@@ -10,6 +10,4 @@ interface CartSource {
     suspend fun removeProduct(product: Product)
 
     fun getProducts(): Flow<List<Product>>
-
-    fun getProductCount(): Flow<Int>
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.zurdus.cabifystore.common.response.ResponseError
 import com.zurdus.cabifystore.common.response.doOnFailure
 import com.zurdus.cabifystore.common.response.doOnSuccess
-import com.zurdus.cabifystore.domain.cart.LoadCart
+import com.zurdus.cabifystore.domain.checkout.cart.LoadCart
 import com.zurdus.cabifystore.domain.product.LoadProducts
 import com.zurdus.cabifystore.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow

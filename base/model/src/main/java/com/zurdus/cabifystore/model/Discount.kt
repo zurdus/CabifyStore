@@ -1,5 +1,8 @@
 package com.zurdus.cabifystore.model
 
-abstract class Discount(
+import java.math.BigDecimal
 
+abstract class Discount(
+    val name: String,
+    val amount: BigDecimal,
 )

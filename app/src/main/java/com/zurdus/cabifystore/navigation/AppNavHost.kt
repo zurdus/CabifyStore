@@ -3,7 +3,7 @@ package com.zurdus.cabifystore.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.zurdus.cabifystore.feature.cart.navigation.cartNavGraph
+import com.zurdus.cabifystore.feature.checkout.navigation.cartNavGraph
 import com.zurdus.cabifystore.feature.catalog.navigation.catalogNavGraph
 
 @Composable

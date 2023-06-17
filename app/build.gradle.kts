@@ -51,13 +51,14 @@ android {
 
 dependencies {
     implementation(project(":feature:catalog"))
-    implementation(project(":feature:cart"))
+    implementation(project(":feature:checkout"))
 
     implementation(project(":domain:product"))
-    implementation(project(":domain:cart"))
+    implementation(project(":domain:checkout"))
 
     implementation(project(":data:product:impl"))
     implementation(project(":data:cart:impl"))
+    implementation(project(":data:discount:impl"))
 
     implementation(project(":base:common"))
     implementation(project(":base:ui"))

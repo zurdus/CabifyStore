@@ -53,8 +53,6 @@ class DataStoreCart(
             localProducts.map { LocalProduct.toProduct(it) }
         }
 
-    override fun getProductCount(): Flow<Int> = getProducts().map { it.count() }
-
     private suspend fun saveProductList(products: List<Product>) {
         val localProducts = products.map { LocalProduct.fromProduct(it) }.toList()
 

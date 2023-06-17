@@ -17,10 +17,10 @@ rootProject.name = "Cabify Store"
 include(":app")
 
 include(":feature:catalog")
-include(":feature:cart")
+include(":feature:checkout")
 
 include(":domain:product")
-include(":domain:cart")
+include(":domain:checkout")
 
 include(":data:product:api")
 include(":data:product:impl")
@@ -34,3 +34,5 @@ include(":base:util")
 include(":base:ui")
 
 include(":navigation")
+include(":data:discount:api")
+include(":data:discount:impl")
