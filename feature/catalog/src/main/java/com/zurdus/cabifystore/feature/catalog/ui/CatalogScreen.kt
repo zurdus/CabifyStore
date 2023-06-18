@@ -25,7 +25,6 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.LocalContentColor
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -62,9 +61,9 @@ import com.zurdus.cabifystore.feature.catalog.navigation.navigateToDetail
 import com.zurdus.cabifystore.model.Product
 import com.zurdus.cabifystore.navigation.navigateToCart
 import com.zurdus.cabifystore.ui.composable.Preview
-import com.zurdus.cabifystore.util.formatToEuros
 import org.koin.androidx.compose.getViewModel
 import java.math.BigDecimal
+import com.zurdus.base.ui.R as BaseR
 
 @Composable
 fun CatalogScreen(
@@ -74,7 +73,6 @@ fun CatalogScreen(
 
     val products by viewModel.products.collectAsStateWithLifecycle()
     val cartItemCount by viewModel.cartCount.collectAsStateWithLifecycle()
-    val totalPrice by viewModel.totalPrice.collectAsStateWithLifecycle()
     val loading by viewModel.loading.collectAsStateWithLifecycle()
     val refreshing by viewModel.refreshing.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
@@ -82,17 +80,15 @@ fun CatalogScreen(
     CatalogScreen(
         products = products,
         cartItemCount = cartItemCount,
-        totalPrice = totalPrice,
         loading = loading,
         refreshing = refreshing,
         error = error,
         onRefresh = viewModel::onCatalogRefresh,
         onProductClick = { index, product ->
-            navController.navigateToDetail(product, index) },
-        onCartButtonClick = {
-            navController.navigateToCart()
-        }
-    )
+            navController.navigateToDetail(product, index) }
+    ) {
+        navController.navigateToCart()
+    }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -100,7 +96,6 @@ fun CatalogScreen(
 private fun CatalogScreen(
     products: List<Product>,
     cartItemCount: Int,
-    totalPrice: BigDecimal,
     loading: Boolean,
     refreshing: Boolean,
     error: ResponseError?,
@@ -123,7 +118,7 @@ private fun CatalogScreen(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = stringResource(R.string.cabify_store),
+                            text = stringResource(BaseR.string.cabify_store),
                             style = CabifyTheme.typography.h4
                         )
                     }
@@ -133,7 +128,7 @@ private fun CatalogScreen(
                         Modifier.clickable(onClick = onCartButtonClick)
                     ) {
                         Icon(
-                            Icons.Outlined.ShoppingCart,
+                            imageVector = Icons.Outlined.ShoppingCart,
                             tint = CabifyTheme.color.neutral.content,
                             contentDescription = null,
                         )
@@ -189,7 +184,6 @@ private fun CatalogScreen(
                     ProductCatalog(
                         contentPaddings = contentPaddings,
                         products = products,
-                        totalPrice = totalPrice,
                         onProductClick = onProductClick,
                         onCartButtonClick = onCartButtonClick,
                     )
@@ -203,7 +197,6 @@ private fun CatalogScreen(
 private fun ProductCatalog(
     contentPaddings: PaddingValues = PaddingValues(0.dp),
     products: List<Product>,
-    totalPrice: BigDecimal,
     onProductClick: (Int, Product) -> Unit,
     onCartButtonClick: () -> Unit,
 ) {
@@ -254,8 +247,8 @@ private fun ProductCatalog(
                 onClick = onCartButtonClick,
             ) {
                 Text(
-                    text = "Your total: ${totalPrice.formatToEuros()}",
-                    style = CabifyTheme.typography.subtitle1
+                    text = stringResource(R.string.button_continue_to_checkout),
+                    style = CabifyTheme.typography.subtitle1,
                 )
             }
         }
@@ -291,7 +284,7 @@ private fun CatalogItem(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(visual.imageUrl)
                     .decoderFactory(SvgDecoder.Factory())
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(BaseR.drawable.placeholder)
                     .crossfade(true)
                     .build(),
                 colorFilter = ColorFilter.tint(colorSystem.accent),
@@ -345,9 +338,16 @@ private fun ErrorScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("There was an error", style = MaterialTheme.typography.body1)
+        Text(
+            text = "Uh oh!",
+            style = CabifyTheme.typography.h6
+        )
 
-        Text("Please try again")
+        Text(
+            text = "Something went wrong. Please try again later.",
+            style = CabifyTheme.typography.body1,
+            textAlign = TextAlign.Center
+        )
     }
 }
 
@@ -367,7 +367,7 @@ private fun EmptyScreen() {
         )
 
         Text(
-            text = "Something went wrong. Please check your Internet connection and try again.",
+            text = "Seems like we ran out of goodies! Please try again later.",
             style = CabifyTheme.typography.body1,
             textAlign = TextAlign.Center
         )

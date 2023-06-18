@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="checkout_title_your_shopping_cart">Your shopping cart</string>
+    <string name="button_text_pay_order">Pay and make order</string>
+    <string name="checkout_title_no_items">You have no items.</string>
+    <string name="checkout_subtitle_add_products">Why not add some?</string>
+    <string name="button_text_explore_catalog">Explore our catalog</string>
+    <string name="checkout_tag_subtotal">Subtotal</string>
+    <string name="checkout_tag_discount">Total discount</string>
+    <string name="checkout_tag_total">Total</string>
+    <string name="dialog_button_delete">Delete</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="dialog_delete_text">Do you want to remove this product from your cart?</string>
+</resources>

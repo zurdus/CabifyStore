@@ -55,6 +55,9 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation("io.coil-kt:coil-svg:2.4.0")
 
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
     implementation("androidx.compose:compose-bom:2023.06.00")
     implementation("androidx.compose.material:material:1.5.0-beta02")
     implementation("androidx.navigation:navigation-compose:2.6.0")

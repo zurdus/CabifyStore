@@ -22,7 +22,7 @@ class LoadCart(
             }
     }
 
-    private fun createCartItems(products: List<Product>): List<CartItem> =
+    private fun createCartItems(products: List<Product>): Set<CartItem> =
         products
             .groupBy {
                 it
@@ -30,17 +30,15 @@ class LoadCart(
             .map { entry ->
                 createCartItem(entry.key, entry.value.size)
             }
+            .toSet()
 
     private fun createCartItem(product: Product, itemCount: Int): CartItem {
-        val subtotal = product.price.times(BigDecimal(itemCount))
         val discount = BigDecimal(0)
 
         return CartItem(
             product = product,
             count = itemCount,
-            subtotal = subtotal,
             discount = discount,
-            total = subtotal - discount,
         )
     }
 }

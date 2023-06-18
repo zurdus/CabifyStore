@@ -1,4 +1,4 @@
-package com.zurdus.base.ui.theme
+package com.zurdus.cabifystore.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.runtime.ProvidableCompositionLocal

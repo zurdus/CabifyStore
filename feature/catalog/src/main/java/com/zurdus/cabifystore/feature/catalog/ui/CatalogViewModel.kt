@@ -44,16 +44,6 @@ class CatalogViewModel(
             initialValue = 0
         )
 
-    val totalPrice: StateFlow<BigDecimal> = loadCart()
-        .map { cart ->
-            cart.total
-        }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
-            initialValue = BigDecimal("0")
-        )
-
     init {
         loadCatalog(refreshing = false)
     }

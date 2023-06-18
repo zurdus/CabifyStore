@@ -3,7 +3,7 @@ package com.zurdus.cabifystore.model
 import java.math.BigDecimal
 
 data class Cart(
-    val items: List<CartItem>,
+    val items: Set<CartItem>,
 ) {
     val itemCount: Int
         get() = items.sumOf { it.count }
@@ -20,7 +20,11 @@ data class Cart(
 data class CartItem(
     val product: Product,
     val count: Int,
-    val subtotal: BigDecimal,
     val discount: BigDecimal,
-    val total: BigDecimal,
-)
+) {
+    val subtotal: BigDecimal
+        get() = product.price.times(BigDecimal(count))
+
+    val total: BigDecimal
+        get() = subtotal - discount
+}

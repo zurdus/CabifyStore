@@ -11,7 +11,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
@@ -69,10 +72,11 @@ fun Stepper(
     valueValidator: ((Int) -> Boolean)? = null,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.height(IntrinsicSize.Min),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         StepperButton(
+            modifier = Modifier.fillMaxHeight(),
             onClick = { onValueChange.invoke(value - 1) },
             enabled = valueValidator?.invoke(value - 1) ?: true,
             colorSystem = colorSystem,
@@ -99,16 +103,17 @@ fun Stepper(
         ) { targetNumber ->
             Text(
                 modifier = Modifier
-                    .padding(horizontal = 10.dp)
+                    .padding(horizontal = 8.dp)
                     .widthIn(min = 24.dp),
                 text = targetNumber.toString(),
-                style = CabifyTheme.typography.h4,
+                style = CabifyTheme.typography.subtitle2,
                 color = colorSystem.content,
                 textAlign = TextAlign.Center,
             )
         }
 
         StepperButton(
+            modifier = Modifier.fillMaxHeight(),
             onClick = { onValueChange.invoke(value + 1) },
             enabled = valueValidator?.invoke(value + 1) ?: true,
             colorSystem = colorSystem,
@@ -125,6 +130,7 @@ fun Stepper(
 private fun StepperButton(
     onClick: () -> Unit,
     colorSystem: ColorSystem,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -135,12 +141,14 @@ private fun StepperButton(
     }
 
     Box(
-        modifier = Modifier.clickable(
-            enabled = enabled,
-            onClick = onClick,
-            interactionSource = remember { MutableInteractionSource() },
-            indication = rememberRipple(bounded = false, radius = 22.dp),
-        ),
+        modifier = modifier
+            .clickable(
+                enabled = enabled,
+                onClick = onClick,
+                interactionSource = remember { MutableInteractionSource() },
+                indication = rememberRipple(bounded = false, radius = 20.dp),
+            )
+            .height(20.dp),
     ) {
         CompositionLocalProvider(
             LocalTextStyle provides CabifyTheme.typography.body1,
