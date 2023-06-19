@@ -1,5 +1,6 @@
 package com.zurdus.cabifystore.feature.checkout.ui
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -233,8 +234,11 @@ private fun PriceColumn(
     visual: CartItemVisual,
     modifier: Modifier = Modifier,
 ) {
-    Column {
-        if (visual.discount != BigDecimal.ZERO) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.End,
+    ) {
+        AnimatedVisibility(visual.discount != BigDecimal.ZERO) {
             Box(
                 modifier = Modifier.width(IntrinsicSize.Min),
                 contentAlignment = Alignment.Center,
@@ -244,7 +248,8 @@ private fun PriceColumn(
                         .padding(horizontal = 4.dp)
                         .alpha(0.5f),
                     text = visual.subtotal.formatToEuros(),
-                    style = CabifyTheme.typography.subtitle2
+                    style = CabifyTheme.typography.subtitle2,
+                    textAlign = TextAlign.End
                 )
 
                 Spacer(

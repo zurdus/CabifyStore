@@ -6,5 +6,5 @@ import com.zurdus.cabifystore.model.Discount
 internal class DefaultDiscountRepository(
     private val discountDataSource: MemoryDiscountDataSource,
 ) : DiscountRepository {
-    override suspend fun getDiscounts(): List<Discount> = discountDataSource.getDiscounts()
+    override suspend fun getDiscounts(): Set<Discount> = discountDataSource.getDiscounts()
 }

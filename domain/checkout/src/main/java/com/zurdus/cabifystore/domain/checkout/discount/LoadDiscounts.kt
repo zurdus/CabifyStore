@@ -9,7 +9,7 @@ class LoadDiscounts(
     private val discountRepository: DiscountRepository,
     private val dispatchers: Dispatchers,
 ) {
-    suspend operator fun invoke(): List<Discount> = withContext(dispatchers.default) {
+    suspend operator fun invoke(): Set<Discount> = withContext(dispatchers.default) {
         discountRepository.getDiscounts()
     }
 }
