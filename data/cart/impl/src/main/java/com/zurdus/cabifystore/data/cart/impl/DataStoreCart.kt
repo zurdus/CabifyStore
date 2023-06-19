@@ -37,7 +37,11 @@ class DataStoreCart(
 
     override suspend fun removeProduct(product: Product) {
         val savedCartProducts = getProducts().first().toMutableList()
-        savedCartProducts.remove(product)
+        val lastIndex = savedCartProducts.lastIndexOfFirst { it == product }
+
+        if (lastIndex != -1) {
+            savedCartProducts.removeAt(lastIndex)
+        }
 
         saveProductList(savedCartProducts)
     }
@@ -59,6 +63,13 @@ class DataStoreCart(
         context.cartDataStore.edit { preferences ->
             preferences[PreferencesKeys.CART] = Json.encodeToString(localProducts)
         }
+    }
+
+    private inline fun <T> List<T>.lastIndexOfFirst(predicate: (T) -> Boolean): Int {
+        for (index in indices.reversed()) {
+            if (predicate(this[index])) return index
+        }
+        return -1
     }
 }
 

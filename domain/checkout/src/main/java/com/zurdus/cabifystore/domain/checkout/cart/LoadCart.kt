@@ -32,7 +32,7 @@ class LoadCart(
             }
     }
 
-    private suspend fun createCartItems(products: List<Product>): Set<CartItem> =
+    private fun createCartItems(products: List<Product>): Set<CartItem> =
         products
             .groupBy {
                 it
