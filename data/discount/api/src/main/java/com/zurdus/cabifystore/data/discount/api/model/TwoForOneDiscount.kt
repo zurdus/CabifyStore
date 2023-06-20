@@ -1,10 +1,10 @@
-package com.zurdus.cabifystore.data.discount.impl.model
+package com.zurdus.cabifystore.data.discount.api.model
 
 import com.zurdus.cabifystore.model.CartItem
 import com.zurdus.cabifystore.model.Discount
 import java.math.BigDecimal
 
-internal class TwoForOneDiscount(
+class TwoForOneDiscount(
     applicableProductCodes: Set<String>,
 ) : Discount(applicableProductCodes) {
 

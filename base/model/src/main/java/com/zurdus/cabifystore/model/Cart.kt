@@ -5,7 +5,7 @@ import java.math.BigDecimal
 data class Cart(
     val items: Set<CartItem>,
 ) {
-    val itemCount: Int
+    val productCount: Int
         get() = items.sumOf { it.count }
 
     val subtotal: BigDecimal

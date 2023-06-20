@@ -3,8 +3,8 @@ package com.zurdus.cabifystore.feature.catalog.ui
 import androidx.compose.runtime.Composable
 import com.zurdus.base.ui.theme.CabifyTheme
 import com.zurdus.base.ui.theme.ColorSystem
-import com.zurdus.cabifystore.util.formatToEuros
 import com.zurdus.cabifystore.model.Product
+import com.zurdus.cabifystore.util.formatToEuros
 
 internal data class CatalogItemVisual(
     val imageUrl: String,

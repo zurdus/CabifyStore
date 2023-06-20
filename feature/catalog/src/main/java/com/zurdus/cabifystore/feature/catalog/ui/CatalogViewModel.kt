@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.math.BigDecimal
 
 class CatalogViewModel(
     loadCart: LoadCart,
@@ -36,7 +35,7 @@ class CatalogViewModel(
 
     val cartCount: StateFlow<Int> = loadCart()
         .map { cart ->
-            cart.itemCount
+            cart.productCount
         }
         .stateIn(
             scope = viewModelScope,
