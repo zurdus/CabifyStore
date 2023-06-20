@@ -73,7 +73,6 @@ class CatalogViewModel(
                     _loading.value = false
                     _refreshing.value = false
                 }
-
         }
     }
 }

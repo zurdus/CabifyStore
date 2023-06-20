@@ -1,5 +1,7 @@
 package com.zurdus.cabifystore.feature.checkout.ui
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,14 +26,18 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.SnackbarDuration
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -56,6 +62,8 @@ import com.zurdus.cabifystore.ui.composable.AnimatedCurrency
 import com.zurdus.cabifystore.ui.composable.Preview
 import com.zurdus.cabifystore.ui.composable.Stepper
 import com.zurdus.cabifystore.util.formatToEuros
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 import java.math.BigDecimal
 import com.zurdus.base.ui.R as BaseR
@@ -69,6 +77,8 @@ fun CheckoutScreen(
     val cart by viewModel.cart.collectAsStateWithLifecycle()
     val productToDelete by viewModel.productToDelete.collectAsStateWithLifecycle()
 
+    val context: Context = LocalContext.current
+
     CheckoutScreen(
         cart = cart,
         productToDelete = productToDelete,
@@ -76,7 +86,13 @@ fun CheckoutScreen(
         onProductCountChange = viewModel::onProductCountChange,
         onProductDeleteConfirm = viewModel::onProductDeleteConfirm,
         onProductDeleteCancel = viewModel::onProductDeleteCancel,
-        onPayButtonClick = {} // TODO put something here
+        onPayButtonClick = {
+            Toast.makeText(
+                context,
+                "This is where payment would start",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     )
 }
 
@@ -116,7 +132,7 @@ private fun CheckoutScreen(
                     }
                 }
             )
-        }
+        },
     ) { contentPaddings ->
         when {
             cart.items.isEmpty() -> {
@@ -443,18 +459,7 @@ private fun CartItemPreview(
     @PreviewParameter(DiscountParamProvider::class) discount: BigDecimal,
 ) {
     Preview {
-//        CartItem(
-//            cartItem = CartItem(
-//                product = Product(
-//                    code = "test",
-//                    name = "Test item",
-//                    price = BigDecimal.TEN,
-//                    imageUrl = ""
-//                ),
-//                count = 2,
-//                discount = discount,
-//            )
-//        )
+
     }
 }
 

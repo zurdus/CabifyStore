@@ -2,4 +2,9 @@
 <resources>
     <string name="catalog_title_made_for_you">Made for you</string>
     <string name="button_continue_to_checkout">Continue to checkout</string>
+    <string name="item_detail_button_add">Add to cart</string>
+    <string name="error_title_uh_oh">Uh oh!</string>
+    <string name="error_text_something_went_wrong">Something went wrong. Please try again later.</string>
+    <string name="empty_catalog_title_uh_oh">Uh oh!</string>
+    <string name="empty_catalog_text_ran_out_of_goodies">We seem to be out of goodies!\\nPlease try again later.</string>
 </resources>

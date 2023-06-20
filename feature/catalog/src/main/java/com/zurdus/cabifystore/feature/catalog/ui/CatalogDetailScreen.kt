@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -25,6 +26,7 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.zurdus.base.ui.theme.CabifyTheme
+import com.zurdus.cabifystore.feature.catalog.R
 import com.zurdus.cabifystore.model.Product
 import com.zurdus.cabifystore.ui.composable.Preview
 import org.koin.androidx.compose.getViewModel
@@ -81,7 +83,7 @@ private fun CatalogDetailScreen(
                 )
             ) {
                 Text(
-                    text = "Add to cart",
+                    text = stringResource(R.string.item_detail_button_add),
                     style = CabifyTheme.typography.subtitle1
                 )
             }

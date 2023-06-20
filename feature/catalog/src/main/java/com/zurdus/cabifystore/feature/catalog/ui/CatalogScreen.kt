@@ -124,9 +124,7 @@ private fun CatalogScreen(
                     }
                 },
                 actions = {
-                    Row(
-                        Modifier.clickable(onClick = onCartButtonClick)
-                    ) {
+                    Row {
                         Icon(
                             imageVector = Icons.Outlined.ShoppingCart,
                             tint = CabifyTheme.color.neutral.content,
@@ -135,8 +133,15 @@ private fun CatalogScreen(
 
                         Box(
                             modifier = Modifier
-                                .clip(CabifyTheme.shape.large)
-                                .background(CabifyTheme.color.mainInverse.background)
+                                .clickable(
+                                    onClick = onCartButtonClick,
+                                    interactionSource = remember { MutableInteractionSource() },
+                                    indication = rememberRipple(),
+                                )
+                                .background(
+                                    CabifyTheme.color.mainInverse.background,
+                                    CabifyTheme.shape.large
+                                )
                                 .padding(horizontal = 16.dp, vertical = 4.dp)
                                 .defaultMinSize(16.dp),
                             contentAlignment = Alignment.Center,
@@ -339,12 +344,12 @@ private fun ErrorScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Uh oh!",
+            text = stringResource(R.string.error_title_uh_oh),
             style = CabifyTheme.typography.h6
         )
 
         Text(
-            text = "Something went wrong. Please try again later.",
+            text = stringResource(R.string.error_text_something_went_wrong),
             style = CabifyTheme.typography.body1,
             textAlign = TextAlign.Center
         )
@@ -362,12 +367,12 @@ private fun EmptyScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Uh oh!",
+            text = stringResource(R.string.empty_catalog_title_uh_oh),
             style = CabifyTheme.typography.h6
         )
 
         Text(
-            text = "Seems like we ran out of goodies! Please try again later.",
+            text = stringResource(R.string.empty_catalog_text_ran_out_of_goodies),
             style = CabifyTheme.typography.body1,
             textAlign = TextAlign.Center
         )
