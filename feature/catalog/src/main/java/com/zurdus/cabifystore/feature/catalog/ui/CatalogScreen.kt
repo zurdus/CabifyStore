@@ -397,17 +397,36 @@ private fun RefreshableContent(
 
 @Preview
 @Composable
-fun CatalogItemPreview() {
+private fun CatalogScreenPreview() {
     Preview {
-        CatalogItem(
-            index = 1,
-            product = Product(
-                code = "test",
-                imageUrl = "https://i.imgur.com/2cYRww5.png",
-                name = "Test item",
-                price = BigDecimal("100"),
+        CatalogScreen(
+            products = listOf(
+                Product(
+                    code = "",
+                    name = "Cabify socks",
+                    price = BigDecimal("7"),
+                    imageUrl = ""
+                ),
+                Product(
+                    code = "",
+                    name = "Cabify crown",
+                    price = BigDecimal("150"),
+                    imageUrl = ""
+                ),
+                Product(
+                    code = "",
+                    name = "Cabify hat",
+                    price = BigDecimal("15"),
+                    imageUrl = ""
+                ),
             ),
-            onClick = { _, _ -> },
+            cartItemCount = 3,
+            loading = false,
+            refreshing = false,
+            error = null,
+            onRefresh = {},
+            onProductClick = { _, _ ->},
+            onCartButtonClick = {},
         )
     }
 }

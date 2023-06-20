@@ -26,18 +26,14 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.SnackbarDuration
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -62,8 +58,6 @@ import com.zurdus.cabifystore.ui.composable.AnimatedCurrency
 import com.zurdus.cabifystore.ui.composable.Preview
 import com.zurdus.cabifystore.ui.composable.Stepper
 import com.zurdus.cabifystore.util.formatToEuros
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 import java.math.BigDecimal
 import com.zurdus.base.ui.R as BaseR
@@ -455,17 +449,58 @@ private fun DeleteProductConfirmDialog(
 
 @Preview
 @Composable
-private fun CartItemPreview(
-    @PreviewParameter(DiscountParamProvider::class) discount: BigDecimal,
+private fun CheckoutScreenPreview(
+    @PreviewParameter(CartParamProvider::class) cart: Cart,
 ) {
     Preview {
+        CheckoutScreen(
+            cart = cart,
+            productToDelete = null,
+            onBack = {},
+            onProductCountChange = { _, _ -> },
+            onProductDeleteConfirm = {},
+            onProductDeleteCancel = {}) {
 
+        }
     }
 }
 
-private class DiscountParamProvider : PreviewParameterProvider<BigDecimal> {
-    override val values: Sequence<BigDecimal> = sequenceOf(
-        BigDecimal.ZERO,
-        BigDecimal(5),
+private class CartParamProvider : PreviewParameterProvider<Cart> {
+    override val values: Sequence<Cart> = sequenceOf(
+        Cart(
+            setOf(
+                CartItem(
+                    product = Product(
+                        code = "",
+                        name = "Cabify socks",
+                        price = BigDecimal("7"),
+                        imageUrl = ""
+                    ),
+                    count = 3,
+                    discount = BigDecimal("5"),
+                ),
+                CartItem(
+                    product = Product(
+                        code = "",
+                        name = "Cabify crown",
+                        price = BigDecimal("150"),
+                        imageUrl = ""
+                    ),
+                    count = 1,
+                    discount = BigDecimal.ZERO,
+                ),
+                CartItem(
+                    product = Product(
+                        code = "",
+                        name = "Cabify hat",
+                        price = BigDecimal("15"),
+                        imageUrl = ""
+                    ),
+                    count = 10,
+                    discount = BigDecimal("50"),
+                )
+            )
+        ),
+        Cart(setOf()),
     )
 }

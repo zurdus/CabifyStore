@@ -15,7 +15,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import java.math.BigDecimal
 
-internal class DefaultRepositoryTest {
+internal class DefaultProductRepositoryTest {
     private val mockRemoteSource = mockk<RemoteProductDataSource>(relaxed = true)
     private val mockLocalSource = mockk<LocalProductDataSource>(relaxed = true)
 
